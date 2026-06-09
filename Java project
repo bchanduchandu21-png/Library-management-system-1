@@ -1,0 +1,77 @@
+import java.util.Scanner;
+
+class Library {
+    String bookName;
+    int bookId;
+    boolean issued;
+
+    Library(String bookName, int bookId) {
+        this.bookName = bookName;
+        this.bookId = bookId;
+        this.issued = false;
+    }
+
+    void displayBook() {
+        System.out.println("Book ID: " + bookId);
+        System.out.println("Book Name: " + bookName);
+        System.out.println("Issued: " + (issued ? "Yes" : "No"));
+    }
+
+    void issueBook() {
+        if (!issued) {
+            issued = true;
+            System.out.println("Book issued successfully.");
+        } else {
+            System.out.println("Book is already issued.");
+        }
+    }
+
+    void returnBook() {
+        if (issued) {
+            issued = false;
+            System.out.println("Book returned successfully.");
+        } else {
+            System.out.println("Book was not issued.");
+        }
+    }
+}
+
+public class LibraryManagementSystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        Library book = new Library("Java Programming", 101);
+
+        int choice;
+
+        do {
+            System.out.println("\n--- Library Management System ---");
+            System.out.println("1. Display Book");
+            System.out.println("2. Issue Book");
+            System.out.println("3. Return Book");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    book.displayBook();
+                    break;
+                case 2:
+                    book.issueBook();
+                    break;
+                case 3:
+                    book.returnBook();
+                    break;
+                case 4:
+                    System.out.println("Thank You!");
+                    break;
+                default:
+                    System.out.println("Invalid Choice!");
+            }
+        } while (choice != 4);
+
+        sc.close();
+    }
+}
